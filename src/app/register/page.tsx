@@ -2,16 +2,33 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+interface RegisterFormData {
+  username: string;
+  displayName: string;
+  password: string;
+  confirmPassword: string;
+}
+
+interface RegisterFormErrors {
+  username: string;
+  displayName: string;
+  password: string;
+  confirmPassword: string;
+}
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState({
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState<RegisterFormData>({
     username: '',
     displayName: '',
     password: '',
     confirmPassword: '',
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<RegisterFormErrors>({
     username: '',
     displayName: '',
     password: '',
@@ -31,6 +48,9 @@ export default function RegisterPage() {
     if (formData.username.length < 3) {
       newErrors.username = 'A felhasználónévnek legalább 3 karakter hosszúnak kell lennie';
       isValid = false;
+    } else if (!/^[a-zA-Z0-9_-]+$/.test(formData.username)) {
+      newErrors.username = 'A felhasználónév csak betűket, számokat, kötőjelet és aláhúzást tartalmazhat';
+      isValid = false;
     }
 
     // Display name validation
@@ -42,6 +62,9 @@ export default function RegisterPage() {
     // Password validation
     if (formData.password.length < 8) {
       newErrors.password = 'A jelszónak legalább 8 karakter hosszúnak kell lennie';
+      isValid = false;
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
+      newErrors.password = 'A jelszónak tartalmaznia kell kis- és nagybetűt, valamint számot';
       isValid = false;
     }
 
@@ -57,9 +80,34 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
-      // TODO: Implement registration logic
-      console.log('Registration attempt:', formData);
+    if (!validateForm() || isLoading) return;
+
+    try {
+      setIsLoading(true);
+      
+      // TODO: Implement API call here
+      // const response = await fetch('/api/auth/register', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     username: formData.username,
+      //     displayName: formData.displayName,
+      //     password: formData.password,
+      //   }),
+      // });
+      
+      // if (!response.ok) throw new Error('Registration failed');
+      
+      // Redirect to login page after successful registration
+      router.push('/login');
+    } catch (error) {
+      console.error('Registration error:', error);
+      setErrors(prev => ({
+        ...prev,
+        username: 'Hiba történt a regisztráció során. Kérjük, próbáld újra később.',
+      }));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -97,11 +145,12 @@ export default function RegisterPage() {
                   type="text"
                   autoComplete="username"
                   required
+                  disabled={isLoading}
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                   className={`block w-full appearance-none rounded-md border ${
                     errors.username ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm`}
+                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed`}
                 />
                 {errors.username && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.username}</p>
@@ -122,11 +171,12 @@ export default function RegisterPage() {
                   name="displayName"
                   type="text"
                   required
+                  disabled={isLoading}
                   value={formData.displayName}
                   onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
                   className={`block w-full appearance-none rounded-md border ${
                     errors.displayName ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm`}
+                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed`}
                 />
                 {errors.displayName && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.displayName}</p>
@@ -148,11 +198,12 @@ export default function RegisterPage() {
                   type="password"
                   autoComplete="new-password"
                   required
+                  disabled={isLoading}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className={`block w-full appearance-none rounded-md border ${
                     errors.password ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm`}
+                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed`}
                 />
                 {errors.password && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.password}</p>
@@ -174,11 +225,12 @@ export default function RegisterPage() {
                   type="password"
                   autoComplete="new-password"
                   required
+                  disabled={isLoading}
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   className={`block w-full appearance-none rounded-md border ${
                     errors.confirmPassword ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm`}
+                  } px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed`}
                 />
                 {errors.confirmPassword && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-400">
@@ -191,9 +243,10 @@ export default function RegisterPage() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                disabled={isLoading}
+                className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Regisztráció
+                {isLoading ? 'Regisztráció...' : 'Regisztráció'}
               </button>
             </div>
           </form>

@@ -1,6 +1,25 @@
+'use client';
+
+import { useClientCheck } from '../../hooks/useClientCheck';
+
 export default function DownloadPage() {
+  const mounted = useClientCheck();
   const windowsDownloadUrl = "http://lassanstorage.netlify.app/Lassan!%20(v1.8.1b).zip";
   const linuxDownloadUrl = "http://lassanstorage.netlify.app/Lassan!%20(v1.8.1b).zip";
+
+  if (!mounted) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Betöltés...
+            </h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

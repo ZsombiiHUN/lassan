@@ -1,7 +1,16 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
+import { useClientCheck } from '../hooks/useClientCheck';
 
 export default function Home() {
+  const mounted = useClientCheck();
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div className="space-y-20">
       {/* Hero Section */}
@@ -30,14 +39,16 @@ export default function Home() {
             </div>
             <div className="mt-12 relative sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">
               <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                <div className="relative block w-full overflow-hidden rounded-lg bg-white focus:outline-none">
-                  <Image
-                    src="/gameplay1.gif"
-                    alt="Játék előnézet"
-                    width={500}
-                    height={300}
-                    className="w-full"
-                  />
+                <div className="relative block w-full overflow-hidden rounded-lg bg-gray-900">
+                  <div className="aspect-w-16 aspect-h-9">
+                    <Image
+                      src="/gameplay1.gif"
+                      alt="Játék előnézet"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
             </div>
