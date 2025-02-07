@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lassan! - A Sebesség és Pontosság Játék
 
-## Getting Started
+![Lassan! Logo](public/gameplay1.gif)
 
-First, run the development server:
+## 🎮 A Projektről
 
+A Lassan! egy kihívásokkal teli játék, amely próbára teszi a játékosok sebességét és pontosságát. A projekt egy iskolai munka keretében készült, modern webes technológiák felhasználásával.
+
+## 🚀 Főbb Funkciók
+
+- **Sebesség Teszt**: Teszteld a reakcióidődet egyre nehezedő pályákon
+- **Kiegészítők**: Szerezz kozmetikai elemeket és oldd fel a különböző szinteket
+- **Globális Ranglista**: Versenyezz másokkal és kerülj fel a globális ranglistára
+- **Sötét/Világos Mód**: Személyre szabható felhasználói felület
+- **Reszponzív Dizájn**: Tökéletesen működik minden eszközön
+
+## 🛠️ Technológiák
+
+- [Next.js 15](https://nextjs.org/)
+- [React 19](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## 📦 Telepítés
+
+1. Klónozd a repository-t:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/lassan.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigálj a projekt könyvtárába:
+```bash
+cd lassan
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Telepítsd:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Indítsd el a fejlesztői szervert:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Nyisd meg a [http://localhost:3000](http://localhost:3000) címet a böngésződben
 
-To learn more about Next.js, take a look at the following resources:
+## 🎮 Játék Letöltése
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+A játék elérhető Windows és Linux operációs rendszerekre:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Letöltés Windowsra](http://lassanstorage.netlify.app/Lassan!%20(v1.8.1b).zip)
+- [Letöltés Linuxra](http://lassanstorage.netlify.app/Lassan!%20(v1.8.1b).zip)
 
-## Deploy on Vercel
+### Rendszerkövetelmények
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Minimális:
+- Operációs rendszer: Windows 7 vagy újabb / Linux Wine 5.0+
+- Processzor: 1.5 GHz vagy gyorsabb
+- Memória: 2 GB RAM
+- Grafika: DirectX 9 kompatibilis videókártya
+- Tárhely: 100 MB szabad hely
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Ajánlott:
+- Operációs rendszer: Windows 10/11 vagy újabb / Linux Wine 7.0+
+- Processzor: 2.0 GHz vagy gyorsabb
+- Memória: 4 GB RAM
+- Grafika: DirectX 11 kompatibilis videókártya
+- Tárhely: 200 MB szabad hely
+
+## 🤝 Közreműködés
+
+A közreműködéseket szívesen fogadjuk! Kérjük, először nyiss egy issue-t a változtatások megvitatásához.
+
+## 📝 Licensz
+
+Ez a projekt [MIT](LICENSE) licensz alatt áll.
+
+## 👥 Készítők
+
+- [Fejlesztő neve] - *Kezdeti munka* - [GitHub profil]
+
+## 🙏 Köszönetnyilvánítás
+
+- Köszönet mindenkinek, aki visszajelzést adott és tesztelte a játékot
+
+- ai generated this readme file
