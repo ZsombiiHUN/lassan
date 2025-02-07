@@ -40,12 +40,13 @@ export default function Home() {
             <div className="mt-12 relative sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">
               <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                 <div className="relative block w-full overflow-hidden rounded-lg bg-gray-900">
-                  <div className="aspect-w-16 aspect-h-9">
+                  <div className="relative w-full h-[300px]">
                     <Image
                       src="/gameplay1.gif"
                       alt="Játék előnézet"
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-contain"
                       priority
                     />
                   </div>
