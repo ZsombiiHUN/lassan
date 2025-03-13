@@ -96,7 +96,10 @@ export default function RootLayout({
               
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
                 <p className="text-base text-gray-500 dark:text-gray-400 text-center">
-                  &copy; {new Date().getFullYear()} Lassan! Minden jog fenntartva.
+                  &copy; {new Date().getFullYear()} Lassan! Minden jog fenntartva. 
+                </p>
+                <p className="text-base text-gray-500 dark:text-gray-400 text-center">
+                  Made by <a href="https://zsombi.dev" className="hover:text-blue-500">Zsombi</a> by 💗
                 </p>
               </div>
             </div>
